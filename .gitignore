@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+
+# Environment variables
+.env
+.env.local
+
+# Database
+*.db
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Node modules (backup protection)
+node_modules/
+
+# Build folders
+dist/
+build/
