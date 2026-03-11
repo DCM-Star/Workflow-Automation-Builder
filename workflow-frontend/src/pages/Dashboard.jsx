@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+const API_URL = import.meta.env.VITE_API_URL
 
 function Dashboard({ token, onLogout }) {
 
@@ -14,7 +15,7 @@ function Dashboard({ token, onLogout }) {
 
       try {
 
-        const res = await fetch("http://127.0.0.1:5000/workflows/", {
+        const res = await fetch(`${API_URL}/workflows/`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -48,7 +49,7 @@ function Dashboard({ token, onLogout }) {
 
     try {
 
-      const res = await fetch("http://127.0.0.1:5000/workflows/", {
+      const res = await fetch(`${API_URL}/workflows/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +75,7 @@ function Dashboard({ token, onLogout }) {
 
     try {
 
-      const res = await fetch(`http://127.0.0.1:5000/workflows/${id}`, {
+      const res = await fetch(`${API_URL}/workflows/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`

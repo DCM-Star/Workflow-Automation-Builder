@@ -12,15 +12,17 @@ def create_app():
 
     # Enable CORS for React frontend
     CORS(
-        app,
-        resources={r"/*": {"origins": [
-            "http://localhost:5173",
-            "http://127.0.0.1:5173"
-        ]}},
-        supports_credentials=True,
-        allow_headers=["Content-Type", "Authorization"],
-        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-    )
+    app,
+    resources={r"/*": {"origins": [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://dcm-star-portfolio.vercel.app",
+        "https://workflow-automation-builder-lake.vercel.app"
+    ]}},
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+)
 
     # Initialize extensions
     db.init_app(app)

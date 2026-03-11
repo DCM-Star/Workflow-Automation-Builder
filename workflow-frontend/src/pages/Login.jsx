@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+const API_URL = import.meta.env.VITE_API_URL
 
 function Login({ onLogin }) {
 
@@ -9,42 +10,42 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
+  
+const handleLogin = async (e) => {
+  e.preventDefault()
 
-    try {
+  try {
 
-      const res = await fetch("http://127.0.0.1:5000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          password
-        })
+    const res = await fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        password
       })
+    })
 
-      const data = await res.json()
+    const data = await res.json()
 
-      if (data.access_token) {
+    if (data.access_token) {
 
-        onLogin(data.access_token)
+      onLogin(data.access_token)
 
-      } else {
+    } else {
 
-        setMessage(data.error || "Login failed")
-
-      }
-
-    } catch (error) {
-
-      console.error(error)
-      setMessage("Server error")
+      setMessage(data.error || "Login failed")
 
     }
 
+  } catch (error) {
+
+    console.error(error)
+    setMessage("Server error")
+
   }
+}
 
   return (
     <div style={{ padding: 40 }}>
